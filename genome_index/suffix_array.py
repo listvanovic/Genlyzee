@@ -24,7 +24,7 @@ from genome_index.fasta_io import parse_fasta_chromosome
 SENTINEL = "$"
 
 
-# Naivna izgradnja - referentna
+# Naivni pristup - referentni
 
 def build_suffix_array_naive(text: str) -> List[int]:
     """Izravno sortiraj sve sufikse od `text` i vrati njihove početne pozicije - O(n^2 log n) u najgorem slučaju
