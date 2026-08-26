@@ -1,4 +1,4 @@
-# Genizyee
+# Genlyzee
 
 An implementation of genome indexing with a suffix array, read alignment, and mutation (SNP) calling.
 
