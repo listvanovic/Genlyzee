@@ -14,6 +14,9 @@ star_comparison/bin/
 star_comparison/index/
 star_comparison/build/
 
-# puni SAM je nekoliko GB; commita se samo .sample verzija
+# puni SAM/TSV rezultati su stotine MB do nekoliko GB; commitaju se samo .sample verzije
 star_comparison/results/star/*.sam
+star_comparison/results/filtered/clean_reads.tsv
+star_comparison/results/filtered/clean_reads_nh.tsv
 !*.sample.sam
+!*.sample.tsv
