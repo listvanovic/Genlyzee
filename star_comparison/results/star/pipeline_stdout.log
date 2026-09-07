@@ -1,0 +1,10 @@
+== STAR genome index već postoji, preskačem genomeGenerate ==
+== Pokrećem STAR alignment ==
+	/Users/lorenaistvanovic/programming/završni/star_comparison/bin/STAR --runMode alignReads --runThreadN 6 --genomeDir /Users/lorenaistvanovic/programming/završni/star_comparison/index --readFilesIn /Users/lorenaistvanovic/programming/završni/Fly/IFM48h_1.fastq --outSAMtype SAM --outFileNamePrefix /Users/lorenaistvanovic/programming/završni/star_comparison/results/star/IFM48h_1.
+	STAR version: 2.7.11b   compiled:  :/Users/lorenaistvanovic/programming/završni/star_comparison/build/STAR-src/source
+Sep 06 00:35:55 ..... started STAR run
+Sep 06 00:35:55 ..... loading genome
+Sep 06 00:35:57 ..... started mapping
+Sep 06 00:37:32 ..... finished mapping
+Sep 06 00:37:32 ..... finished successfully
+== Gotovo. SAM izlaz: /Users/lorenaistvanovic/programming/završni/star_comparison/results/star/IFM48h_1.Aligned.out.sam ==

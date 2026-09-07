@@ -5,3 +5,15 @@ __pycache__/
 .DS_Store
 hg38/
 *.pdf
+
+# raw reference data (large, not checked in)
+Fly/
+
+# STAR: built binary, genome index, and third-party source checkout
+star_comparison/bin/
+star_comparison/index/
+star_comparison/build/
+
+# puni SAM je nekoliko GB; commita se samo .sample verzija
+star_comparison/results/star/*.sam
+!*.sample.sam
