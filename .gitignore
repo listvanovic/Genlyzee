@@ -23,6 +23,8 @@ star_comparison/results/filtered/clean_reads.tsv
 star_comparison/results/filtered/clean_reads_nh.tsv
 star_comparison/results/my_aligner/clean_reads_input.fasta
 star_comparison/results/my_aligner/my_alignments.tsv
+star_comparison/results/comparison/comparison.csv
 !*.sample.sam
 !*.sample.tsv
 !*.sample.fasta
+!*.sample.csv

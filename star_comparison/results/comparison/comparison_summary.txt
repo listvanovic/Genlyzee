@@ -1,0 +1,11 @@
+Tolerancija: 0 baza
+Ukupno čistih reada (STAR referenca): 9,299,988
+Pogodaka: 8,966,932
+STROGA točnost (pogoci / svi čisti readovi): 96.42%
+
+Raspodjela ishoda vlastitog alignera:
+  multi: 179,897 (1.93%)
+  unique: 8,966,941 (96.42%)
+  unmapped: 153,150 (1.65%)
+
+Od 8,966,941 jedinstvenih poravnanja, 8,966,932 se poklapa sa STAR-om (100.00%) [unique-only točnost]
