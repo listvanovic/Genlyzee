@@ -1,0 +1,23 @@
+Učitavam genom i spajam kontige ...
+  1870 kontiga, 144,099,795 baza (uklj. spacere), 0.4s
+Gradim suffix array (divsufsort) ...
+  gotovo za 8.3s
+Indeks zapisan u star_comparison/my_index/
+        9.06 real         8.35 user         0.48 sys
+           891928576  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              132425  page reclaims
+                 444  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 827  voluntary context switches
+                3821  involuntary context switches
+         34095792204  instructions retired
+         29553366334  cycles elapsed
+           883033120  peak memory footprint

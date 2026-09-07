@@ -1,0 +1,44 @@
+Učitavam indeks ...
+  učitano za 0.4s (144,099,795 baza)
+Poravnavam 9,299,988 reada (max_mismatches=3) ...
+  ...500,000 reada za 57s (8796 reada/s)
+  ...1,000,000 reada za 110s (9128 reada/s)
+  ...1,500,000 reada za 164s (9143 reada/s)
+  ...2,000,000 reada za 216s (9268 reada/s)
+  ...2,500,000 reada za 267s (9349 reada/s)
+  ...3,000,000 reada za 319s (9401 reada/s)
+  ...3,500,000 reada za 373s (9380 reada/s)
+  ...4,000,000 reada za 427s (9358 reada/s)
+  ...4,500,000 reada za 482s (9338 reada/s)
+  ...5,000,000 reada za 536s (9326 reada/s)
+  ...5,500,000 reada za 590s (9315 reada/s)
+  ...6,000,000 reada za 645s (9298 reada/s)
+  ...6,500,000 reada za 699s (9295 reada/s)
+  ...7,000,000 reada za 751s (9319 reada/s)
+  ...7,500,000 reada za 804s (9323 reada/s)
+  ...8,000,000 reada za 858s (9326 reada/s)
+  ...8,500,000 reada za 910s (9341 reada/s)
+  ...9,000,000 reada za 963s (9350 reada/s)
+
+Gotovo za 994.2s (9354 reada/s)
+Unique:   8,966,941 (96.42%)
+Multi:    179,897 (1.93%)
+Unmapped: 153,150 (1.65%)
+     1009.52 real       968.57 user        24.54 sys
+          1562148864  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             3391908  page reclaims
+                 845  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+               46257  voluntary context switches
+              252554  involuntary context switches
+      16107554075234  instructions retired
+       3352993032353  cycles elapsed
+          5750886840  peak memory footprint
