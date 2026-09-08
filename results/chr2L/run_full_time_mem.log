@@ -1,0 +1,105 @@
+[1/4] Izdvajam kromosom '2L' iz Fly/Drosophila_melanogaster.BDGP6.dna.toplevel.fa ...
+      23,513,712 baza, 0.08s
+[2/4] Gradim suffix array (divsufsort) ...
+      gotovo za 1.19s
+[3/4] Poravnavam readove iz Fly/IFM48h_1.fastq (max_mismatches=3) ...
+  ...200,000 reada za 22s (9237 reada/s)
+  ...400,000 reada za 44s (9113 reada/s)
+  ...600,000 reada za 66s (9070 reada/s)
+  ...800,000 reada za 88s (9090 reada/s)
+  ...1,000,000 reada za 109s (9201 reada/s)
+  ...1,200,000 reada za 129s (9271 reada/s)
+  ...1,400,000 reada za 151s (9288 reada/s)
+  ...1,600,000 reada za 172s (9309 reada/s)
+  ...1,800,000 reada za 194s (9300 reada/s)
+  ...2,000,000 reada za 215s (9287 reada/s)
+  ...2,200,000 reada za 236s (9307 reada/s)
+  ...2,400,000 reada za 257s (9344 reada/s)
+  ...2,600,000 reada za 277s (9376 reada/s)
+  ...2,800,000 reada za 298s (9398 reada/s)
+  ...3,000,000 reada za 319s (9411 reada/s)
+  ...3,200,000 reada za 339s (9439 reada/s)
+  ...3,400,000 reada za 360s (9451 reada/s)
+  ...3,600,000 reada za 381s (9441 reada/s)
+  ...3,800,000 reada za 403s (9424 reada/s)
+  ...4,000,000 reada za 423s (9451 reada/s)
+  ...4,200,000 reada za 443s (9490 reada/s)
+  ...4,400,000 reada za 462s (9526 reada/s)
+  ...4,600,000 reada za 482s (9553 reada/s)
+  ...4,800,000 reada za 502s (9568 reada/s)
+  ...5,000,000 reada za 521s (9588 reada/s)
+  ...5,200,000 reada za 542s (9601 reada/s)
+  ...5,400,000 reada za 562s (9607 reada/s)
+  ...5,600,000 reada za 582s (9614 reada/s)
+  ...5,800,000 reada za 603s (9624 reada/s)
+  ...6,000,000 reada za 623s (9632 reada/s)
+  ...6,200,000 reada za 643s (9638 reada/s)
+  ...6,400,000 reada za 663s (9648 reada/s)
+  ...6,600,000 reada za 684s (9653 reada/s)
+  ...6,800,000 reada za 704s (9656 reada/s)
+  ...7,000,000 reada za 724s (9667 reada/s)
+  ...7,200,000 reada za 744s (9671 reada/s)
+  ...7,400,000 reada za 765s (9671 reada/s)
+  ...7,600,000 reada za 785s (9684 reada/s)
+  ...7,800,000 reada za 805s (9690 reada/s)
+  ...8,000,000 reada za 826s (9689 reada/s)
+  ...8,200,000 reada za 845s (9702 reada/s)
+  ...8,400,000 reada za 865s (9706 reada/s)
+  ...8,600,000 reada za 886s (9707 reada/s)
+  ...8,800,000 reada za 905s (9722 reada/s)
+  ...9,000,000 reada za 925s (9728 reada/s)
+  ...9,200,000 reada za 944s (9744 reada/s)
+  ...9,400,000 reada za 964s (9749 reada/s)
+  ...9,600,000 reada za 983s (9762 reada/s)
+  ...9,800,000 reada za 1003s (9775 reada/s)
+  ...10,000,000 reada za 1021s (9793 reada/s)
+  ...10,200,000 reada za 1041s (9800 reada/s)
+  ...10,400,000 reada za 1060s (9812 reada/s)
+  ...10,600,000 reada za 1080s (9819 reada/s)
+  ...10,800,000 reada za 1098s (9833 reada/s)
+  ...11,000,000 reada za 1118s (9839 reada/s)
+  ...11,200,000 reada za 1136s (9855 reada/s)
+  ...11,400,000 reada za 1156s (9863 reada/s)
+  ...11,600,000 reada za 1175s (9871 reada/s)
+  ...11,800,000 reada za 1195s (9878 reada/s)
+  ...12,000,000 reada za 1214s (9884 reada/s)
+  ...12,200,000 reada za 1233s (9892 reada/s)
+  ...12,400,000 reada za 1253s (9896 reada/s)
+  ...12,600,000 reada za 1272s (9904 reada/s)
+  ...12,800,000 reada za 1292s (9908 reada/s)
+  ...13,000,000 reada za 1311s (9917 reada/s)
+  ...13,200,000 reada za 1330s (9923 reada/s)
+  ...13,400,000 reada za 1351s (9918 reada/s)
+  ...13,600,000 reada za 1372s (9912 reada/s)
+  ...13,800,000 reada za 1394s (9900 reada/s)
+  ...14,000,000 reada za 1415s (9892 reada/s)
+  ...14,200,000 reada za 1439s (9871 reada/s)
+  ...14,400,000 reada za 1461s (9854 reada/s)
+  ...14,600,000 reada za 1484s (9841 reada/s)
+  ...14,800,000 reada za 1505s (9831 reada/s)
+      14,988,127 reada za 1527.81s (9810 reada/s)
+      unique: 2,321,574 (15.49%)
+      multi: 29,104 (0.19%)
+      unmapped: 12,637,449 (84.32%)
+      skipped: 0 (0.00%)
+[4/4] Pozivanje mutacija preskočeno (nema --mutations-out)
+
+Ukupno: 1529.08s (FASTA 0.08s + indeks 1.19s + poravnanje 1527.81s + mutacije 0.00s)
+     1529.34 real      1475.95 user        14.89 sys
+           172392448  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              383206  page reclaims
+                 598  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1274  voluntary context switches
+              650152  involuntary context switches
+      23844659150387  instructions retired
+       4986257128304  cycles elapsed
+           159597096  peak memory footprint

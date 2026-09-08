@@ -24,6 +24,9 @@ star_comparison/results/filtered/clean_reads_nh.tsv
 star_comparison/results/my_aligner/clean_reads_input.fasta
 star_comparison/results/my_aligner/my_alignments.tsv
 star_comparison/results/comparison/comparison.csv
+results/chr2L/my_alignments_full.tsv
+results/chr2L/comparison_chr2L.csv
+results/chr2L/unmapped_reason_breakdown.tsv
 !*.sample.sam
 !*.sample.tsv
 !*.sample.fasta
