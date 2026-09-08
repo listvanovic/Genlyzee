@@ -1,4 +1,4 @@
-# Genome indexing, read alignment, and mutation calling
+# 🧬 Genlyzee
 
 Own implementation of three genomic data-processing algorithms: chromosome
 **suffix array** construction, **read alignment** against that index, and
