@@ -1,6 +1,6 @@
 # 🧬 Genlyzee
 
-Own implementation of three genomic data-processing algorithms: chromosome
+An independent implementation of three genomic data-processing algorithms: chromosome
 **suffix array** construction, **read alignment** against that index, and
 **point-mutation calling** from the resulting alignments. Written in
 Python, without using any existing alignment tool.
@@ -39,11 +39,10 @@ and a reads file, and runs the full pipeline: it extracts the requested
 chromosome, builds its suffix array, aligns every read against that index,
 and calls point mutations from the resulting alignments.
 
-The goal of the project is an own implementation of these algorithms and
-verification of their correctness on real biological data. STAR is not
-part of the implementation; it is used only as an independent reference
-solution against which alignment coordinates are compared. Comparison
-results are in [`REPORT.md`](REPORT.md).
+The goal is to implement these algorithms and evaluate their
+behavior on real biological data. 
+STAR is not part of the implementation; it is used only as an independent reference solution against which alignment coordinates are compared. 
+Comparison results are in [`REPORT.md`](REPORT.md).
 
 ### Architecture
 
@@ -133,6 +132,10 @@ STAR and its index, are not included in the repository due to size.
 
 #### Suffix array construction
 
+A suffix of a sequence at position `i` is the substring running from `i`
+to the end of the sequence — for `"BANANA"`, the suffixes are `BANANA`,
+`ANANA`, `NANA`, `ANA`, `NA`, and `A`.
+
 A suffix array is an array of the starting positions of every suffix of a
 sequence, sorted lexicographically. Suffixes sharing a prefix therefore
 occupy one contiguous block of the array, which makes it possible to
@@ -144,7 +147,7 @@ Three procedures are implemented:
 | Procedure | Function | Complexity | Purpose |
 |---|---|---|---|
 | Naive suffix sort | `build_suffix_array_naive` | O(n² log n) | reference solution for correctness checks in the tests |
-| SA-IS | `_sa_is`, via `build_suffix_array_from_sequence(method="sais")` | O(n) | own implementation of the linear algorithm |
+| SA-IS | `_sa_is`, via `build_suffix_array_from_sequence(method="sais")` | O(n) | implementation of the linear algorithm |
 | `divsufsort` | `build_suffix_array_from_sequence(method="divsufsort")` | — | used for runs at real chromosome scale |
 
 **SA-IS** (Nong, Zhang and Chen, 2009) builds the suffix array via induced
@@ -193,8 +196,7 @@ pigeonhole principle is used:
 
 1. The read is split into `max_mismatches + 1` seeds. If the read has at
    most `max_mismatches` mismatches, at least one seed is necessarily free
-   of any difference, so it can be located by exact search. The procedure
-   therefore never misses an alignment within the given threshold.
+   of any difference, so it can be located by exact search. The procedure therefore produces at least one candidate for every alignment within the threshold provided that no seed is skipped by the `max_seed_hits` optimization.
 2. Exact matches are searched for every seed. The positions are shifted
    back by the seed's offset within the read, giving candidate start
    positions for the whole read.
@@ -205,7 +207,12 @@ pigeonhole principle is used:
 A seed with more than `max_seed_hits` exact matches is skipped as
 uninformative. Such seeds occur in repetitive regions and runs of `N`
 bases, where checking every candidate would be infeasible, and
-localization of the read is left to the remaining seeds.
+localization of the read is left to the remaining seeds. This optimization
+may reduce sensitivity if the only mismatch-free seed is skipped.
+
+The reverse complement of a sequence reverses it and replaces each base
+with its complementary base (A↔T, C↔G) — it represents the same DNA read
+from the opposite strand.
 
 The procedure runs on both strands: the read as given (`strand = "+"`) and
 its reverse complement (`strand = "-"`). The position is reported on the
@@ -219,6 +226,9 @@ A read is classified by the number of alignments found: exactly one
 Only point substitutions are called. Insertions and deletions are not
 supported, consistent with the alignment algorithm also not handling
 them.
+
+A pileup lists, for every reference position, the bases reported there by
+every read aligned across it.
 
 1. **Pileup construction.** For every read with exactly one alignment,
    its bases are mapped onto forward-strand reference coordinates. For an
@@ -388,18 +398,18 @@ Files produced in `results/chr2L/`:
 pytest tests/ -v
 ```
 
-16 tests, all passing.
+The test suite currently contains 16 tests, all of which pass.
 
 | File | Test count | Content |
 |---|---|---|
 | `test_suffix_array.py` | 5 | known examples, SA-IS vs. the naive procedure on random strings, empty input, `divsufsort`/`sais` backend agreement |
 | `test_alignment.py` | 6 | exact matching, alignment with mismatches, a nonexistent read, reverse complement, batch alignment with deduplication, input validation |
 | `test_alignment_fuzz.py` | 1 | comparison against an exhaustive procedure on randomly generated cases |
-| `test_mutation_calling.py` | 4 | a call with sufficient coverage and fraction, rejecting a single error, rejecting low coverage, reads on the negative strand |
+| `test_mutation_calling.py` | 4 | mutation calling with sufficient coverage and variant fraction, rejecting a single error, rejecting low coverage, reads on the negative strand |
 
 Additionally, `moj_primjer.py` runs the full pipeline over chromosome chrM
 from the hg38 assembly with a known ground truth: it aligns a read with an
-inserted difference back to its known position, and, over a set of 200
+introduced substitution back to its known position, and, over a set of 200
 reads with two planted mutations and five isolated errors, checks that
 both mutations are called and neither error is. The script requires a
 local `hg38/hg38.u.fa` file, which is not included in the repository.
@@ -412,10 +422,10 @@ python3 moj_primjer.py
 
 STAR is an external, independently developed aligner used in this project
 solely as a reference solution. It has not been modified beyond a fix
-needed to build it on macOS, and it plays no part in computing the own
-implementation's results.
+needed to build it on macOS, and it plays no part in producing the results
+of the custom implementation.
 
-The comparison comes down to checking whether the own aligner places
+The comparison comes down to checking whether the custom aligner places
 reads on the same coordinates as STAR. Since the reads are not simulated,
 the true biological origin of any given read is not known, so results are
 expressed as concordance with STAR, not as absolute accuracy.
@@ -470,14 +480,14 @@ njegov suffix array, poravnava svaki read nad tim indeksom i iz poravnanja
 poziva točkaste mutacije.
 
 Cilj projekta je vlastita implementacija navedenih algoritama i provjera
-njihove ispravnosti na stvarnim bioloških podatcima. STAR nije dio
+njihove ispravnosti na stvarnim biološkim podatcima. STAR nije dio
 implementacije; koristi se samo kao neovisno referentno rješenje s kojim se
 uspoređuju koordinate poravnanja. Rezultati usporedbe nalaze se u
 [`REPORT.md`](REPORT.md).
 
 ### Arhitektura
 
-Sve tri faze implementirane su u paketu `genome_index/`. Skripta
+Sve tri faze implementirane su u `genome_index/`. Skripta
 `run_pipeline.py` povezuje ih u jedan naredbeni program i ne sadrži vlastitu
 algoritamsku logiku.
 
@@ -563,6 +573,9 @@ izgradnjom STAR-a i indeksa nisu uključeni u repozitorij zbog veličine.
 
 #### Izgradnja suffix arraya
 
+Sufiks niza na poziciji `i` je podniz od te pozicije do kraja niza — za
+`"BANANA"` sufiksi su `BANANA`, `ANANA`, `NANA`, `ANA`, `NA` i `A`.
+
 Suffix array je polje početnih pozicija svih sufiksa sekvence, poredanih
 leksikografski. Sufiksi koji dijele isti prefiks time zauzimaju jedan
 neprekinuti blok polja, što omogućuje pretraživanje uzorka binarnom
@@ -595,7 +608,7 @@ sortiranjem. Postupak:
    suffix array.
 
 SA-IS je odabran umjesto DC3/skew algoritma jer zahtijeva samo jedan
-rekurzivni korak umjesto pristupa s razdvajanjem i spajanjem.
+rekurzivni korak umjesto split-then-merge pristupa.
 
 Implementacija u čistom Pythonu je linearna, ali u praksi prespora za
 kromosom veličine 23,5 milijuna baza, pa se za izvođenje nad stvarnim
@@ -621,8 +634,7 @@ seed-and-extend zasnovan na pigeonhole principu:
 
 1. Read se dijeli na `max_mismatches + 1` seedova. Ako read ima najviše
    `max_mismatches` nepodudaranja, barem jedan seed nužno je bez ijedne
-   razlike, pa ga se može pronaći egzaktnom pretragom. Postupak time ne
-   propušta poravnanja unutar zadanog praga.
+   razlike, pa ga se može pronaći egzaktnom pretragom. Postupak time daje barem jednog kandidata za svako poravnanje unutar zadanog praga pod uvjetom da optimizacija `max_seed_hits` ne preskoči nijedan seed.
 2. Za svaki seed traže se egzaktna podudaranja. Pozicije se pomiču unatrag
    za pomak seeda unutar reada, čime se dobivaju kandidatske početne
    pozicije cijelog reada.
@@ -633,10 +645,15 @@ seed-and-extend zasnovan na pigeonhole principu:
 Seed s više od `max_seed_hits` egzaktnih podudaranja preskače se kao
 neinformativan. Takvi seedovi javljaju se u ponavljajućim regijama i
 nizovima baza `N`, gdje bi provjera svih kandidata bila neizvediva, a
-lokalizaciju reada preuzimaju preostali seedovi.
+lokalizaciju reada preuzimaju preostali seedovi. Ova optimizacija može
+smanjiti osjetljivost ako se preskoči jedini seed bez nepodudaranja.
+
+Reverse complement sekvence dobiva se okretanjem niza i zamjenom svake
+baze komplementarnom bazom (A↔T, C↔G) — predstavlja isti DNA očitan sa
+suprotnog lanca.
 
 Postupak se izvodi nad oba lanca: nad readom kakav je zadan (`strand = "+"`)
-i nad njegovim reverznim komplementom (`strand = "-"`). Pozicija se u oba
+i nad njegovim reverse complementom (`strand = "-"`). Pozicija se u oba
 slučaja prijavljuje na forward lancu reference.
 
 Read se klasificira prema broju pronađenih poravnanja: točno jedno
@@ -647,9 +664,12 @@ Read se klasificira prema broju pronađenih poravnanja: točno jedno
 Pozivaju se isključivo točkaste supstitucije. Insercije i delecije nisu
 podržane, u skladu s time da ih ni algoritam poravnanja ne obrađuje.
 
+Pileup za svaku poziciju reference navodi baze koje na njoj prijavljuje
+svaki poravnati read.
+
 1. **Izgradnja pileupa.** Za svaki read s točno jednim poravnanjem baze se
    preslikavaju na koordinate forward lanca reference. Kod poravnanja na
-   negativnom lancu prvo se uzima reverzni komplement reada. Baze `N` u
+   negativnom lancu prvo se uzima reverse complement reada. Baze `N` u
    readu se preskaču jer nisu informativne. Readovi bez poravnanja i
    multi-mapirani readovi izostavljaju se iz pileupa, čime se preciznost
    ostvaruje nauštrb odziva.
@@ -815,19 +835,18 @@ Nastale datoteke u `results/chr2L/`:
 pytest tests/ -v
 ```
 
-16 testova, svi prolaze.
+Testni paket trenutačno sadrži 16 testova i svi prolaze.
 
 | Datoteka | Broj testova | Sadržaj |
 |---|---|---|
 | `test_suffix_array.py` | 5 | poznati primjeri, usporedba SA-IS-a s naivnim postupkom na nasumičnim nizovima, prazan ulaz, podudarnost backenda `divsufsort` i `sais` |
-| `test_alignment.py` | 6 | egzaktno podudaranje, poravnanje s nepodudaranjima, nepostojeći read, reverzni komplement, skupno poravnanje s uklanjanjem duplikata, provjera ulaznih vrijednosti |
+| `test_alignment.py` | 6 | egzaktno podudaranje, poravnanje s nepodudaranjima, nepostojeći read, reverse complement, skupno poravnanje s uklanjanjem duplikata, provjera ulaznih vrijednosti |
 | `test_alignment_fuzz.py` | 1 | usporedba s iscrpnim postupkom na nasumično generiranim slučajevima |
 | `test_mutation_calling.py` | 4 | poziv uz dovoljnu pokrivenost i udio, odbacivanje pojedinačne greške, odbacivanje niske pokrivenosti, readovi s negativnog lanca |
 
 Dodatno, `moj_primjer.py` izvodi cjelovit postupak nad kromosomom chrM iz
-sklopa hg38 s poznatim rješenjem: poravnava read s umetnutom razlikom
-natrag na poznatu poziciju te nad skupom od 200 readova s dvije zasađene
-mutacije i pet pojedinačnih grešaka provjerava jesu li pozvane obje
+sklopa hg38 s poznatim rješenjem: poravnava read s umjetno uvedenom supstitucijom
+natrag na poznatu poziciju te nad skupom od 200 readova s dvije umjetno uvedene mutacije i pet pojedinačnih grešaka provjerava jesu li pozvane obje
 mutacije i nijedna greška. Skripta zahtijeva lokalnu datoteku
 `hg38/hg38.u.fa`, koja nije uključena u repozitorij.
 
